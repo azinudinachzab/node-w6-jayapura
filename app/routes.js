@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const middleware = require("./middleware/rate_limiter")
 const controller = require("./controller/index")
+const controllerUser = require("./controller/user")
 
 /* route init */
 router.get('/udin', middleware, controller.udin);
@@ -15,6 +16,11 @@ router.post('/tambah', controller.tambah)
 router.get('/filter', controller.filter)
 
 router.get('/kategori/:category', controller.kategori)
+
+router.get('/user', controllerUser.getUser)
+router.post('/user', controllerUser.addUser)
+router.put('/user', controllerUser.editUser)
+router.delete('/user', controllerUser.deleteUser)
 
 // self assignment
 // tambahkan 3 routes method get "/jayapura" -> res.json("ini jayapura") menggunakan middleware
